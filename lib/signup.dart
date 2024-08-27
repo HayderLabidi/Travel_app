@@ -205,11 +205,9 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Login'),
-                          ),
+                            onPressed: _signUp,
+                            child: const Text('Sign Up'),
+                          ),                          
                         ],
                       ),
                       InkWell(
@@ -219,7 +217,7 @@ class _SignUpState extends State<SignUp> {
                                 MaterialPageRoute(builder: (context) => const Login()),
                               );
                             },
-                            child: const Text("Already have an account ?" , style: TextStyle(color: Color.fromARGB(255, 255, 255, 255) , fontSize: 15,) ,),
+                            child: const Text("Already have an account ?", style: TextStyle(color: Color.fromARGB(255, 255, 255, 255) , fontSize: 18,) ,),
                           ),
                     ],
                   ),
