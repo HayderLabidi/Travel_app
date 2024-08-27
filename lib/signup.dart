@@ -206,7 +206,7 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           ElevatedButton(
                             onPressed: _signUp,
-                            child: const Text('Sign Up'),
+                            child: const Text('Sign Up '),
                           ),                          
                         ],
                       ),
@@ -217,8 +217,9 @@ class _SignUpState extends State<SignUp> {
                                 MaterialPageRoute(builder: (context) => const Login()),
                               );
                             },
-                            child: const Text("Already have an account ?", style: TextStyle(color: Color.fromARGB(255, 255, 255, 255) , fontSize: 18,) ,),
+                            child: const Text("Already have an account ?", style: TextStyle(color: Color.fromARGB(255, 239, 239, 239) , fontSize: 18,) ,),
                           ),
+
                     ],
                   ),
                 ),
