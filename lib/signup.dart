@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel/login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -204,10 +205,6 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(
-                            onPressed: _signUp,
-                            child: const Text('Sign Up'),
-                          ),
-                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
@@ -215,6 +212,15 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ],
                       ),
+                      InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const Login()),
+                              );
+                            },
+                            child: const Text("Already have an account ?" , style: TextStyle(color: Color.fromARGB(255, 255, 255, 255) , fontSize: 15,) ,),
+                          ),
                     ],
                   ),
                 ),

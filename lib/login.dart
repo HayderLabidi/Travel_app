@@ -84,17 +84,17 @@ class Login extends StatelessWidget {
                             },
                             child: const Text('Login'),
                           ),
-                          ElevatedButton(
-                            onPressed: () {
+                        ],
+                      ),
+                      InkWell(
+                            onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => const SignUp()),
                               );
                             },
-                            child: const Text('Sign Up'),
+                            child: const Text("Signup from here", style: TextStyle(color: Color.fromARGB(255, 255, 255, 255) , fontSize: 17,) ,),
                           ),
-                        ],
-                      ),
                       const SizedBox(height: 16.0),
                       const Text('Or login with'),
                       const SizedBox(height: 16.0),
