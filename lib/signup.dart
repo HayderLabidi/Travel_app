@@ -12,7 +12,7 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
-  String? _selectedCountryCode = '+216'; // Default country code
+  String? _selectedCountryCode = '+216';
   String? _password;
   String? _formMessage;
 
@@ -21,7 +21,6 @@ class _SignUpState extends State<SignUp> {
     'TN': '+216',
     'FR': '+33',
     'IN': '+91',
-    // Add more countries and codes here
   };
 
   void _signUp() {
@@ -70,6 +69,19 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Username',
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your username';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
                       TextFormField(
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -211,15 +223,14 @@ class _SignUpState extends State<SignUp> {
                         ],
                       ),
                       InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const Login()),
-                              );
-                            },
-                            child: const Text("Already have an account ?", style: TextStyle(color: Color.fromARGB(255, 239, 239, 239) , fontSize: 18,) ,),
-                          ),
-
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const Login()),
+                          );
+                        },
+                        child: const Text("Already have an account ?", style: TextStyle(color: Color.fromARGB(255, 239, 239, 239), fontSize: 18),),
+                      ),
                     ],
                   ),
                 ),

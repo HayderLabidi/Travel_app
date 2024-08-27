@@ -44,7 +44,7 @@ class Login extends StatelessWidget {
                       const TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Email',
+                          labelText: 'Email or Phone number',
                         ),
                       ),
                       const SizedBox(height: 16.0),
