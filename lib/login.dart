@@ -90,7 +90,7 @@ class Login extends StatelessWidget {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => SignUp()),
+                                MaterialPageRoute(builder: (context) => const SignUp()),
                               );
                             },
                             child: const Text("Signup from here", style: TextStyle(color: Color.fromARGB(255, 255, 255, 255) , fontSize: 17,) ,),

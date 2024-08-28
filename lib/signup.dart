@@ -38,8 +38,45 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
+ Future<bool> checkUserExists() async {
+  final response = await http.post(
+    Uri.parse('http://10.0.2.2:8080/api/check-user'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode({
+      'username': _usernameController.text,
+      'email': _emailController.text,
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    final usernameExists = data['usernameExists'] ?? false;
+    final emailExists = data['emailExists'] ?? false;
+    return usernameExists || emailExists; 
+  } else {
+    throw Exception('Failed to check user existence');
+  }
+}
+
+
+
+
   Future<void> _signUp() async {
-    if (_formKey.currentState!.validate()) {
+  if (_formKey.currentState!.validate()) {
+    try {
+      final userExists = await checkUserExists();
+      if (userExists) {
+        setState(() {
+          _formMessage = 'Username or email already exists';
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Username or email already exists', style: TextStyle(color: Colors.red))),
+        );
+        return;
+      }
+
       User user = User(
         phone: _selectedCountryCode! + _phoneController.text,
         username: _usernameController.text,
@@ -60,25 +97,33 @@ class _SignUpState extends State<SignUp> {
           _formMessage = 'Sign up successful!';
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Sign up successful!')),
+          const SnackBar(content: Text('Sign up successful!', style: TextStyle(color: Colors.green))),
         );
       } else {
         setState(() {
           _formMessage = 'Failed to register user';
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to register user')),
+          const SnackBar(content: Text('Failed to register user', style: TextStyle(color: Colors.red))),
         );
       }
-    } else {
+    } catch (e) {
       setState(() {
-        _formMessage = 'Please correct the errors in the form';
+        _formMessage = 'Error occurred: $e';
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please correct the errors in the form')),
+        SnackBar(content: Text('Error occurred: $e', style: TextStyle(color: Colors.red))),
       );
     }
+  } else {
+    setState(() {
+      _formMessage = 'Please correct the errors in the form';
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Please correct the errors in the form', style: TextStyle(color: Colors.red))),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -244,35 +289,27 @@ class _SignUpState extends State<SignUp> {
                           ),
                           child: const Text(
                             'Sign Up',
-                            style: TextStyle(fontSize: 16.0, color: Colors.white),
+                            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
                       const SizedBox(height: 16.0),
-                      if (_formMessage != null)
-                        Text(
-                          _formMessage!,
-                          style: const TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      const SizedBox(height: 16.0),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushReplacement(
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
                             MaterialPageRoute(builder: (context) => const Login()),
                           );
                         },
-                        child: const Text(
-                          'Already have an account? Log in',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 35, 107, 143),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.0,
-                          ),
-                        ),
+                        child: const Text('Already have an account? Login'),
                       ),
+                      if (_formMessage != null) ...[
+                        const SizedBox(height: 16.0),
+                        Text(
+                          _formMessage!,
+                          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.red),
+                        ),
+                      ],
                     ],
                   ),
                 ),
