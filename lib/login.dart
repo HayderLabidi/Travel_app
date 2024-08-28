@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel/home.dart';
-import 'signup.dart';
+import 'package:travel/signup.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -90,7 +90,7 @@ class Login extends StatelessWidget {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const SignUp()),
+                                MaterialPageRoute(builder: (context) => SignUp()),
                               );
                             },
                             child: const Text("Signup from here", style: TextStyle(color: Color.fromARGB(255, 255, 255, 255) , fontSize: 17,) ,),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'user.dart';
 import 'package:travel/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -10,10 +13,13 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
   String? _selectedCountryCode = '+216';
-  String? _password;
   String? _formMessage;
 
   final Map<String, String> _countryCodes = {
@@ -23,14 +29,47 @@ class _SignUpState extends State<SignUp> {
     'IN': '+91',
   };
 
-  void _signUp() {
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _signUp() async {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        _formMessage = 'Sign up successful!';
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sign up successful!')),
+      User user = User(
+        phone: _selectedCountryCode! + _phoneController.text,
+        username: _usernameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
       );
+
+      final response = await http.post(
+        Uri.parse('http://10.0.2.2:8080/api/signup'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(user.toJson()),
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          _formMessage = 'Sign up successful!';
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Sign up successful!')),
+        );
+      } else {
+        setState(() {
+          _formMessage = 'Failed to register user';
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to register user')),
+        );
+      }
     } else {
       setState(() {
         _formMessage = 'Please correct the errors in the form';
@@ -70,6 +109,7 @@ class _SignUpState extends State<SignUp> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TextFormField(
+                        controller: _usernameController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Username',
@@ -83,6 +123,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       const SizedBox(height: 16.0),
                       TextFormField(
+                        controller: _emailController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Email',
@@ -97,99 +138,91 @@ class _SignUpState extends State<SignUp> {
                         },
                       ),
                       const SizedBox(height: 16.0),
-                      StatefulBuilder(
-                        builder: (BuildContext context, StateSetter setState) {
-                          return TextFormField(
-                            obscureText: !isPasswordVisible,
-                            decoration: InputDecoration(
-                              border: const OutlineInputBorder(),
-                              labelText: 'Password',
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                  isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    isPasswordVisible = !isPasswordVisible;
-                                  });
-                                },
-                              ),
+                      TextFormField(
+                        controller: _passwordController,
+                        obscureText: !isPasswordVisible,
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your password';
-                              } else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$')
-                                  .hasMatch(value)) {
-                                return 'Password must be at least 8 characters long and include numbers, uppercase, and lowercase letters';
-                              }
-                              _password = value;
-                              return null;
+                            onPressed: () {
+                              setState(() {
+                                isPasswordVisible = !isPasswordVisible;
+                              });
                             },
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      StatefulBuilder(
-                        builder: (BuildContext context, StateSetter setState) {
-                          return TextFormField(
-                            obscureText: !isConfirmPasswordVisible,
-                            decoration: InputDecoration(
-                              border: const OutlineInputBorder(),
-                              labelText: 'Confirm Password',
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                  isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    isConfirmPasswordVisible = !isConfirmPasswordVisible;
-                                  });
-                                },
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please confirm your password';
-                              } else if (value != _password) {
-                                return 'Passwords do not match';
-                              }
-                              return null;
-                            },
-                          );
+                          ),
+                        ),
+                        validator: (value) {
+                          final trimmedValue = value?.trim() ?? '';
+                          if (trimmedValue.isEmpty) {
+                            return 'Please enter your password';
+                          } else if (!RegExp(r'^[a-zA-Z\d]{8,}$').hasMatch(trimmedValue)) {
+                            return 'Password must be at minimum 8 characters and include only letters and numbers';
+                          }
+                          return null;
                         },
                       ),
                       const SizedBox(height: 16.0),
                       TextFormField(
+                        obscureText: !isConfirmPasswordVisible,
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: 'Confirm Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                isConfirmPasswordVisible = !isConfirmPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please confirm your password';
+                          } else if (value != _passwordController.text) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      TextFormField(
+                        controller: _phoneController,
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(),
                           labelText: 'Phone Number',
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.asset(
-                                  'assets/countries/${_countryCodes.entries.firstWhere((entry) => entry.value == _selectedCountryCode).key.toLowerCase()}.png',
-                                  width: 24,
-                                ),
-                                const SizedBox(width: 8),
-                                DropdownButton<String>(
-                                  value: _selectedCountryCode,
-                                  underline: Container(),
-                                  items: _countryCodes.entries.map((entry) {
-                                    return DropdownMenuItem<String>(
-                                      value: entry.value,
-                                      child: Text(entry.value),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      _selectedCountryCode = newValue;
-                                    });
-                                  },
-                                ),
-                              ],
+                            child: DropdownButton<String>(
+                              value: _selectedCountryCode,
+                              items: _countryCodes.entries.map((entry) {
+                                return DropdownMenuItem<String>(
+                                  value: entry.value,
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/Countries/${entry.key}.png',
+                                        width: 25,
+                                        height: 16,
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(entry.value),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedCountryCode = value;
+                                });
+                              },
                             ),
                           ),
                         ),
@@ -200,36 +233,45 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 16.0),
-                      if (_formMessage != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Text(
-                            _formMessage!,
-                            style: TextStyle(
-                              color: _formMessage == 'Sign up successful!'
-                                  ? Colors.green
-                                  : Colors.red,
-                            ),
+                      const SizedBox(height: 24.0),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: _signUp,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(255, 24, 115, 185),
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          ),
+                          child: const Text(
+                            'Sign Up',
+                            style: TextStyle(fontSize: 16.0, color: Colors.white),
                           ),
                         ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton(
-                            onPressed: _signUp,
-                            child: const Text('Sign Up '),
-                          ),                          
-                        ],
                       ),
-                      InkWell(
+                      const SizedBox(height: 16.0),
+                      if (_formMessage != null)
+                        Text(
+                          _formMessage!,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      const SizedBox(height: 16.0),
+                      GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
+                          Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (context) => const Login()),
                           );
                         },
-                        child: const Text("Already have an account ?", style: TextStyle(color: Color.fromARGB(255, 239, 239, 239), fontSize: 18),),
+                        child: const Text(
+                          'Already have an account? Log in',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 35, 107, 143),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                        ),
                       ),
                     ],
                   ),
