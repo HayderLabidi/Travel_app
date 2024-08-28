@@ -20,7 +20,6 @@ class _SignUpState extends State<SignUp> {
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
   String? _selectedCountryCode = '+216';
-  String? _formMessage;
 
   final Map<String, String> _countryCodes = {
     'US': '+1',
@@ -69,7 +68,6 @@ class _SignUpState extends State<SignUp> {
       final userExists = await checkUserExists();
       if (userExists) {
         setState(() {
-          _formMessage = 'Username or email already exists';
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Username or email already exists', style: TextStyle(color: Colors.red))),
@@ -94,14 +92,12 @@ class _SignUpState extends State<SignUp> {
 
       if (response.statusCode == 200) {
         setState(() {
-          _formMessage = 'Sign up successful!';
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Sign up successful!', style: TextStyle(color: Colors.green))),
         );
       } else {
         setState(() {
-          _formMessage = 'Failed to register user';
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Failed to register user', style: TextStyle(color: Colors.red))),
@@ -109,15 +105,13 @@ class _SignUpState extends State<SignUp> {
       }
     } catch (e) {
       setState(() {
-        _formMessage = 'Error occurred: $e';
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error occurred: $e', style: TextStyle(color: Colors.red))),
+        SnackBar(content: Text('Error occurred: $e', style: const TextStyle(color: Colors.red))),
       );
     }
   } else {
     setState(() {
-      _formMessage = 'Please correct the errors in the form';
     });
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Please correct the errors in the form', style: TextStyle(color: Colors.red))),
@@ -303,13 +297,6 @@ class _SignUpState extends State<SignUp> {
                         },
                         child: const Text('Already have an account? Login'),
                       ),
-                      if (_formMessage != null) ...[
-                        const SizedBox(height: 16.0),
-                        Text(
-                          _formMessage!,
-                          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.red),
-                        ),
-                      ],
                     ],
                   ),
                 ),
