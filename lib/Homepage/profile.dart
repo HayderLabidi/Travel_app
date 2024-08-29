@@ -55,7 +55,7 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                       const Text(
-                        'Hayder Labidi',
+                        'Username',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,

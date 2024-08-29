@@ -47,10 +47,9 @@ class _LoginState extends State<Login> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       if (data['success']) {
-        // Wait for 3 seconds before navigating to Home
-        Future.delayed(const Duration(seconds: 3), () {
+        Future.delayed(const Duration(seconds: 2), () {
           setState(() {
-            isLoading = false; // Stop loading spinner
+            isLoading = false; 
           });
           Navigator.pushAndRemoveUntil(
             context,
@@ -60,7 +59,7 @@ class _LoginState extends State<Login> {
         });
       } else {
         setState(() {
-          isLoading = false; // Stop loading spinner
+          isLoading = false; 
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Invalid username/email or password', style: TextStyle(color: Colors.red))),
@@ -68,7 +67,7 @@ class _LoginState extends State<Login> {
       }
     } else {
       setState(() {
-        isLoading = false; // Stop loading spinner
+        isLoading = false; 
       });
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Failed to login', style: TextStyle(color: Colors.red))),
