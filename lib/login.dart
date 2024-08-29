@@ -47,8 +47,8 @@ class _LoginState extends State<Login> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       if (data['success']) {
-        // Wait for 2 seconds before navigating to Home
-        Future.delayed(const Duration(seconds: 2), () {
+        // Wait for 3 seconds before navigating to Home
+        Future.delayed(const Duration(seconds: 3), () {
           setState(() {
             isLoading = false; // Stop loading spinner
           });

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'user.dart';
@@ -234,31 +234,29 @@ class _SignUpState extends State<SignUp> {
                           labelText: 'Phone Number',
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                value: _selectedCountryCode,
-                                items: _countryCodes.entries.map((entry) {
-                                  return DropdownMenuItem<String>(
-                                    value: entry.value,
-                                    child: Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/Countries/${entry.key}.png',
-                                          width: 25,
-                                          height: 16,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(entry.value),
-                                      ],
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedCountryCode = value;
-                                  });
-                                },
-                              ),
+                            child: DropdownButton<String>(
+                              value: _selectedCountryCode,
+                              items: _countryCodes.entries.map((entry) {
+                                return DropdownMenuItem<String>(
+                                  value: entry.value,
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/Countries/${entry.key}.png',
+                                        width: 25,
+                                        height: 16,
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(entry.value),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedCountryCode = value;
+                                });
+                              },
                             ),
                           ),
                         ),
