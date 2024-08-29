@@ -15,16 +15,16 @@ class MessengerPage extends StatefulWidget {
 }
 
 class _MessengerPageState extends State<MessengerPage> {
-  final List<Map<String, String>> countries = [
-    {'name': 'Pelastine', 'flag': 'assets/countries/ps.png'},
-    {'name': 'Canada', 'flag': 'assets/countries/ca.png'},
-    {'name': 'England', 'flag': 'assets/countries/ge.png'},
-    {'name': 'Italy', 'flag': 'assets/countries/it.png'},
-    {'name': 'Tunisia', 'flag': 'assets/countries/tn.png'},
-    {'name': 'Japan', 'flag': 'assets/countries/jp.png'},
-    {'name': 'China', 'flag': 'assets/countries/cn.png'},
-    {'name': 'Brazil', 'flag': 'assets/countries/br.png'},
-    {'name': 'Australia', 'flag': 'assets/countries/au.png'},
+  final List<Map<String, String>> Countries = [
+    {'name': 'Pelastine', 'flag': 'assets/Countries/ps.png'},
+    {'name': 'Canada', 'flag': 'assets/Countries/ca.png'},
+    {'name': 'England', 'flag': 'assets/Countries/ge.png'},
+    {'name': 'Italy', 'flag': 'assets/Countries/it.png'},
+    {'name': 'Tunisia', 'flag': 'assets/Countries/tn.png'},
+    {'name': 'Japan', 'flag': 'assets/Countries/jp.png'},
+    {'name': 'China', 'flag': 'assets/Countries/cn.png'},
+    {'name': 'Brazil', 'flag': 'assets/Countries/br.png'},
+    {'name': 'Australia', 'flag': 'assets/Countries/au.png'},
   ];
   
   List<Map<String, String>> filteredCountries = [];
@@ -35,7 +35,7 @@ class _MessengerPageState extends State<MessengerPage> {
   @override
   void initState() {
     super.initState();
-    filteredCountries = countries;
+    filteredCountries = Countries;
     _searchController.addListener(() {
       filterCountries();
     });
@@ -44,7 +44,7 @@ class _MessengerPageState extends State<MessengerPage> {
   void filterCountries() {
     final query = _searchController.text.toLowerCase();
     setState(() {
-      filteredCountries = countries.where((country) {
+      filteredCountries = Countries.where((country) {
         return country['name']!.toLowerCase().contains(query);
       }).toList();
     });
@@ -138,7 +138,7 @@ class _MessengerPageState extends State<MessengerPage> {
                                 title: const Text('Delete Message'),
                                 onTap: () {
                                   setState(() {
-                                    countries.removeAt(index);
+                                    Countries.removeAt(index);
                                     filteredCountries.removeAt(
                                         index); // Also update filtered list
                                     selectedMessageIndex = null;

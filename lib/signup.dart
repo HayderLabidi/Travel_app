@@ -22,10 +22,10 @@ class _SignUpState extends State<SignUp> {
   String? _selectedCountryCode = '+216';
 
   final Map<String, String> _countryCodes = {
-    'US': '+1',
-    'TN': '+216',
-    'FR': '+33',
-    'IN': '+91',
+    'us': '+1',
+    'tn': '+216',
+    'fr': '+33',
+    'in': '+91',
   };
 
   @override
@@ -234,29 +234,31 @@ class _SignUpState extends State<SignUp> {
                           labelText: 'Phone Number',
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: DropdownButton<String>(
-                              value: _selectedCountryCode,
-                              items: _countryCodes.entries.map((entry) {
-                                return DropdownMenuItem<String>(
-                                  value: entry.value,
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/Countries/${entry.key}.png',
-                                        width: 25,
-                                        height: 16,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Text(entry.value),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  _selectedCountryCode = value;
-                                });
-                              },
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                value: _selectedCountryCode,
+                                items: _countryCodes.entries.map((entry) {
+                                  return DropdownMenuItem<String>(
+                                    value: entry.value,
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/Countries/${entry.key}.png',
+                                          width: 25,
+                                          height: 16,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(entry.value),
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedCountryCode = value;
+                                  });
+                                },
+                              ),
                             ),
                           ),
                         ),

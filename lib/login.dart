@@ -1,6 +1,7 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:ui';
 import 'package:travel/home.dart';
 import 'package:travel/signup.dart';
 
@@ -15,6 +16,7 @@ class _LoginState extends State<Login> {
   final _emailOrUsernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool isPasswordVisible = false;
+  bool isLoading = false; // Loading state
 
   @override
   void dispose() {
@@ -24,6 +26,10 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> _login() async {
+    setState(() {
+      isLoading = true; // Start loading spinner
+    });
+
     final emailOrUsername = _emailOrUsernameController.text;
     final password = _passwordController.text;
 
@@ -41,17 +47,29 @@ class _LoginState extends State<Login> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       if (data['success']) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const Home()),
-          (Route<dynamic> route) => false,
-        );
+        // Wait for 2 seconds before navigating to Home
+        Future.delayed(const Duration(seconds: 2), () {
+          setState(() {
+            isLoading = false; // Stop loading spinner
+          });
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const Home()),
+            (Route<dynamic> route) => false,
+          );
+        });
       } else {
+        setState(() {
+          isLoading = false; // Stop loading spinner
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Invalid username/email or password', style: TextStyle(color: Colors.red))),
         );
       }
     } else {
+      setState(() {
+        isLoading = false; // Stop loading spinner
+      });
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Failed to login', style: TextStyle(color: Colors.red))),
       );
@@ -176,6 +194,16 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
+          if (isLoading)
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            ), // Display spinner with blur effect when loading
         ],
       ),
     );

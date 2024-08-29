@@ -21,7 +21,7 @@ class Destination {
 }
 
 List<Destination> destinations = [
-    Destination(
+  Destination(
       review: random.nextInt(300) + 25,
       id: 2,
       name: "Al-Aksa",
@@ -34,7 +34,7 @@ List<Destination> destinations = [
       price: random.nextInt(95) + 23,
       location: "Al kods, Pelastine",
       description:
-          "Tomini Bay merupakan teluk terbesar yang ada di Indonesia yang memiliki luas 6.000.000 hektar dan memiliki 90 pulau dengan keindahannya. Tomini Bay yang terletak di Sulawesi Utara ini bisa menjadi salah satu pilihan untuk kamu yang ini menikmati pilihan pantai dengan hamparan pasir putih dan laut biru yang jernih. Kamu bisa melihat keindahan terumbu karang langsung dari daratan bagaikan kaca, bahkan jika kamu melihat foto-foto kapal di Tomini Bay, kapal tersebut bagaikan melayang saking jernihnya air laut.\nTempat ini juga merupakan destinasi pantai di Indonesia yang tepat untuk kamu yang hobi snorkeling atau diving karena Tomini Bay terkenal memiliki keindahan bawah laut yang menakjubkan, kamu juga bisa melihat ikan-ikan kecil yang indah walau belum menyelam karena jernihnya air laut. Ada setidaknya 200 diving spot yang bisa menjadi pilihan. Kamu juga bisa menemukan 3 jenis biota laut yang hanya ada 3 di Gorontalo di antaranya adalah Karang Salvador Dali dan Kipas Laut Biru.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.4),
   Destination(
       id: 15,
@@ -49,8 +49,7 @@ List<Destination> destinations = [
       location: "Bali, Indonesia",
       review: random.nextInt(300) + 25,
       price: random.nextInt(95) + 23,
-      description:
-          "Nusa Penida adalah sebuah pulau kecil yang berada sebelah tenggara pulau Bali, dan terpisah oleh selat Badung. Di dekat pulau ini, trdapat 2 pulau kecil lain, yaitu pulau Nusa Lembangan da pulau Nusa Ceningan",
+      description: "Lo",
       rate: 4.6),
   Destination(
       id: 7,
@@ -66,7 +65,7 @@ List<Destination> destinations = [
       category: "popular",
       location: "Jambi, Indonesia",
       description:
-          "Gunung Kerinci (juga dieja 'Kerintji', dan dikenal sebagai Gunung Gadang, Merapi) adalah gunung tertinggi di Sumatra, gunung berapi tertinggi di Indonesia, dan puncak tertinggi di Indonesia di luar Papua. Gunung Kerinci terletak tepat di perbatasan antara Provinsi Sumatera Barat dengan Provinsi Jambi, di Pegunungan Bukit Barisan, dekat pantai barat, dan terletak sekitar 130 km sebelah selatan Padang Provinsi Sumatra Barat. Gunung ini juga menjadi batas antara wilayah Etnis Minangkabau dengan Suku Kerinci yang dikelilingi hutan lebat Taman Nasional Kerinci Seblat dan merupakan habitat harimau sumatra dan badak sumatra.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4),
   Destination(
       id: 3,
@@ -81,7 +80,7 @@ List<Destination> destinations = [
       ],
       location: "Lombok, Indonesia",
       description:
-          "Pantai Tangsi atau yang lebih dikenal dengan Pantai Pink dari Pulau Lombok terletak di desa Sekaroh, kecamatan Jerowaru, kabupaten Lombok Timur adalah sebuah destinasi wisatawan yang menarik dan patut untuk dikunjungi karena keunikannya.[1][2] Pantai ini merupakan salah satu dari tujuh pantai di dunia yang memiliki pasir pantai berwarna pink, dan satu dari dua pantai di Indonesia yang memiliki pasir pantai berwarna pink.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.5),
   Destination(
       id: 8,
@@ -96,7 +95,7 @@ List<Destination> destinations = [
       ],
       location: "Lombok, Indonesia ",
       description:
-          "Gunung Rinjani adalah gunung yang berlokasi di Pulau Lombok, Nusa Tenggara Barat. Gunung yang merupakan gunung berapi kedua tertinggi di Indonesia dengan ketinggian 3.726 mdpl serta terletak pada lintang 8º25' LS dan 116º28' BT ini merupakan gunung favorit bagi pendaki Indonesia karena keindahan pemandangannya. Gunung ini merupakan bagian dari Taman Nasional Gunung Rinjani yang memiliki luas sekitar 41.330 ha dan ini akan diusulkan penambahannya sehingga menjadi 76.000 ha ke arah barat dan timur.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4),
   Destination(
       id: 1,
@@ -111,7 +110,7 @@ List<Destination> destinations = [
       ],
       location: "Lombok, Indonesia",
       description:
-          "The Mandalika Project covers 1,175 hectares of coastal land in Kuta, South Lombok, and will, when complete, be home to more than 16,000 hotel rooms, a waterpark, a 27-hole golf course, 1,500 villas, and an international-standard motor-racing circuit. The estimated cost of the venture is believed to exceed US\$3 billion.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.4),
   Destination(
       id: 9,
@@ -127,7 +126,7 @@ List<Destination> destinations = [
       ],
       location: "Jawa Timur, Indonesia",
       description:
-          "Semeru, or Mount Semeru (Indonesian: Gunung Semeru), is an active volcano in East Java, Indonesia. It is located in a subduction zone, where the Indo-Australian plate subducts under the Eurasia plate. It is the highest mountain on the island of Java. The name 'Semeru' is derived from Meru, the central world mountain in Hinduism, or Sumeru, the abode of gods. This stratovolcano is also known as Mahameru, meaning 'The Great Mountain' in Sanskrit.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4),
   Destination(
       id: 12,
@@ -142,7 +141,7 @@ List<Destination> destinations = [
       ],
       location: "Jawa Timur, Indonesia",
       description:
-          "Gunung Lawu (Hanacaraka:ꦒꦸꦤꦸꦁ​ꦭꦮꦸ) (3.265 MDPL) terletak di Pulau Jawa, Indonesia, tepatnya di perbatasan Provinsi Jawa Tengah dan Jawa Timur. Gunung Lawu terletak di antara tiga kabupaten yaitu Kabupaten Karanganyar, Jawa Tengah, Kabupaten Ngawi, dan Kabupaten Magetan, Jawa Timur. Status gunung ini adalah gunung api 'istirahat' (diperkirakan terakhir meletus pada tanggal 28 November 1885) dan telah lama tidak aktif, terlihat dari rapatnya vegetasi serta puncaknya yang tererosi. Di lerengnya terdapat kepundan kecil yang masih mengeluarkan uap air (fumarol) dan belerang (solfatara). Gunung Lawu mempunyai kawasan hutan Dipterokarp Bukit, hutan Dipterokarp Atas, hutan Montane, dan hutan Ericaceous. Gunung Lawu adalah sumber inspirasi dari nama kereta api Argo Lawu, kereta api eksekutif yang melayani Solo Balapan-Gambir.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.4),
   Destination(
       id: 14,
@@ -157,7 +156,7 @@ List<Destination> destinations = [
       ],
       location: "Maluku, Indonesia",
       description:
-          "Indonesia Timur merupakan bagian Indonesia yang memiliki banyak pilihan untuk berwisata pantai. Banyak destinasi yang bisa dieksplor di wilayah ini salah satunya adalah Pantai Ora. Pantai yang terletak di pulau Seram, Kecamatan Seram Utara, Kabupaten Maluku Tengah ini memiliki keindahan pantai yang menakjubkan didukung dengan pasir putih bersih dan laut berwarna biru kehijauan yang jernih, bahkan kamu bisa melihat indahnya terumbu karang dari jarak yang tidak jauh dari permukaan.\nDengan keindahan bawah laut yang dihadirkan di Pantai Ora, tidak heran jika tempat ini menjadi lokasi yang tepat untuk snorkeling dan diving, karena hanya menyelam sedalam 2-3 meter, kamu sudah bisa menikmati terumbu karang dan ikan berwarna warni. Sering disebut sebagai Maldives versi Indonesia, pantai ini memang memiliki sensasi yang sama layaknya kamu berada di Maladewa karena pantai ini juga menyediakan cottage indah yang dibangun persis di atas permukaan laut, lho!",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.4),
   Destination(
       id: 13,
@@ -172,6 +171,6 @@ List<Destination> destinations = [
       ],
       location: "Jawa Tengah, Indonesia",
       description:
-          "Gunung Merbabu (Hanacaraka:ꦒꦸꦤꦸꦁ​ꦩꦼꦂꦧꦧꦸ) adalah gunung api yang bertipe Strato (lihat Gunung Berapi) yang terletak secara geografis pada 7,5° LS dan 110,4° BT. Secara administratif gunung ini berada di wilayah Kabupaten Magelang di lereng sebelah barat dan Kabupaten Boyolali di lereng sebelah timur dan selatan, Kabupaten Semarang di lereng sebelah utara, Provinsi Jawa Tengah.\nGunung Merbabu dikenal melalui naskah-naskah masa pra-Islam sebagai Gunung Damalung atau Gunung Pam(a)rihan. Di lerengnya pernah terdapat pertapaan terkenal dan pernah disinggahi oleh Bujangga Manik pada abad ke-15. Menurut etimologi, 'merbabu' berasal dari gabungan kata 'meru' (gunung) dan 'abu' (abu). Nama ini baru muncul pada catatan-catatan Belanda.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.4),
 ];

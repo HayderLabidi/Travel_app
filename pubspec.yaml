@@ -69,11 +69,7 @@ flutter:
      - assets/mountain/
      - assets/beach/
      - assets/welcom_login/
-     - assets/countries/
-     - assets/Countries/US.png
-     - assets/Countries/TN.png
-     - assets/Countries/FR.png
-     - assets/Countries/IN.png
+     - assets/Countries/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
