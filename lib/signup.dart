@@ -37,87 +37,82 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
- Future<bool> checkUserExists() async {
-  final response = await http.post(
-    Uri.parse('http://10.0.2.2:8080/api/check-user'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode({
-      'username': _usernameController.text,
-      'email': _emailController.text,
-    }),
-  );
+  Future<bool> checkUserExists() async {
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:8080/api/check-user'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'username': _usernameController.text,
+        'email': _emailController.text,
+      }),
+    );
 
-  if (response.statusCode == 200) {
-    final data = jsonDecode(response.body);
-    final usernameExists = data['usernameExists'] ?? false;
-    final emailExists = data['emailExists'] ?? false;
-    return usernameExists || emailExists; 
-  } else {
-    throw Exception('Failed to check user existence');
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final usernameExists = data['usernameExists'] ?? false;
+      final emailExists = data['emailExists'] ?? false;
+      return usernameExists || emailExists;
+    } else {
+      throw Exception('Failed to check user existence');
+    }
   }
-}
-
-
-
 
   Future<void> _signUp() async {
-  if (_formKey.currentState!.validate()) {
-    try {
-      final userExists = await checkUserExists();
-      if (userExists) {
-        setState(() {
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Username or email already exists', style: TextStyle(color: Colors.red))),
+    if (_formKey.currentState!.validate()) {
+      try {
+        final userExists = await checkUserExists();
+        if (userExists) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Username or email already exists', style: TextStyle(color: Colors.red))),
+          );
+          return;
+        }
+
+        User user = User(
+          phone: _selectedCountryCode! + _phoneController.text,
+          username: _usernameController.text,
+          email: _emailController.text,
+          password: _passwordController.text,
         );
-        return;
+
+        final response = await http.post(
+          Uri.parse('http://10.0.2.2:8080/api/signup'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(user.toJson()),
+        );
+
+        if (response.statusCode == 201) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Sign up successful!', style: TextStyle(color: Color.fromARGB(255, 0, 255, 26)))),
+          );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const Login()),
+          );
+        } else if (response.statusCode == 409) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Username or email already exists', style: TextStyle(color: Colors.red))),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to register user: ${response.reasonPhrase}', style: const TextStyle(color: Colors.red))),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error occurred: $e', style: const TextStyle(color: Colors.red))),
+        );
       }
-
-      User user = User(
-        phone: _selectedCountryCode! + _phoneController.text,
-        username: _usernameController.text,
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-
-      final response = await http.post(
-        Uri.parse('http://10.0.2.2:8080/api/signup'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(user.toJson()),
-      );
-
-      if (response.statusCode == 200) {
-        setState(() {
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Sign up successful!', style: TextStyle(color: Colors.green))),
-        );
-      } else {
-        setState(() {
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to register user', style: TextStyle(color: Colors.red))),
-        );
-      }
-    } catch (e) {
-      setState(() {
-      });
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error occurred: $e', style: const TextStyle(color: Colors.red))),
+        const SnackBar(content: Text('Please correct the errors in the form', style: TextStyle(color: Colors.red))),
       );
     }
-  } else {
-    setState(() {
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please correct the errors in the form', style: TextStyle(color: Colors.red))),
-    );
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -198,8 +193,8 @@ class _SignUpState extends State<SignUp> {
                           final trimmedValue = value?.trim() ?? '';
                           if (trimmedValue.isEmpty) {
                             return 'Please enter your password';
-                          } else if (!RegExp(r'^[a-zA-Z\d]{8,}$').hasMatch(trimmedValue)) {
-                            return 'Password must be at minimum 8 characters and include only letters and numbers';
+                          } else if (!RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$').hasMatch(trimmedValue)) {
+                            return 'Password must be at least 8 characters and include uppercase, lowercase, and numbers';
                           }
                           return null;
                         },
