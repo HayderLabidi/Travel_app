@@ -18,24 +18,30 @@ class Saved extends StatelessWidget {
           ? const Center(
               child: Text('No saved items'),
             )
-          : ListView.builder(
-              itemCount: SavedDestinations.savedList.length,
-              itemBuilder: (context, index) {
-                Destination destination = SavedDestinations.savedList[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            DetailPage(destination: destination),
-                      ),
-                    );
-                  },
-                  child: DestinationVer(destination: destination),
-                );
-              },
-            ),
+          : Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ListView.builder(
+                itemCount: SavedDestinations.savedList.length,
+                itemBuilder: (context, index) {
+                  Destination destination = SavedDestinations.savedList[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailPage(destination: destination),
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: DestinationVer(destination: destination),
+                    ),
+                  );
+                },
+              ),
+          ),
     );
   }
 }
