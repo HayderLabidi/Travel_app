@@ -9,7 +9,6 @@ class Login extends StatefulWidget {
   const Login({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginState createState() => _LoginState();
 }
 
@@ -17,7 +16,7 @@ class _LoginState extends State<Login> {
   final _emailOrUsernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool isPasswordVisible = false;
-  bool isLoading = false; // Loading state
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -28,7 +27,7 @@ class _LoginState extends State<Login> {
 
   Future<void> _login() async {
     setState(() {
-      isLoading = true; // Start loading spinner
+      isLoading = true;
     });
 
     final emailOrUsername = _emailOrUsernameController.text;
@@ -50,31 +49,35 @@ class _LoginState extends State<Login> {
       if (data['success']) {
         Future.delayed(const Duration(seconds: 2), () {
           setState(() {
-            isLoading = false; 
+            isLoading = false;
           });
           Navigator.pushAndRemoveUntil(
-            // ignore: use_build_context_synchronously
             context,
-            MaterialPageRoute(builder: (context) => const Home()),
+            MaterialPageRoute(
+              builder: (context) => Home(
+                username: data['username'],
+              ),
+            ),
             (Route<dynamic> route) => false,
           );
         });
       } else {
         setState(() {
-          isLoading = false; 
+          isLoading = false;
         });
-        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid username/email or password', style: TextStyle(color: Colors.red))),
+          const SnackBar(
+              content: Text('Invalid username/email or password',
+                  style: TextStyle(color: Colors.red))),
         );
       }
     } else {
       setState(() {
-        isLoading = false; 
+        isLoading = false;
       });
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to login', style: TextStyle(color: Colors.red))),
+        const SnackBar(
+            content: Text('Failed to login', style: TextStyle(color: Colors.red))),
       );
     }
   }
@@ -186,11 +189,12 @@ class _LoginState extends State<Login> {
                           ),
                           const SizedBox(width: 16.0),
                           IconButton(
-                            icon: const Icon(Icons.apple, color: Colors.black, size: 36.0),
+                            icon: const Icon(Icons.phone, color: Colors.green, size: 36.0),
                             onPressed: () {},
                           ),
                         ],
                       ),
+                      const SizedBox(height: 16.0),
                     ],
                   ),
                 ),
@@ -198,15 +202,12 @@ class _LoginState extends State<Login> {
             ),
           ),
           if (isLoading)
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ),
+            Container(
+              color: Colors.black54,
+              child: const Center(
+                child: CircularProgressIndicator(),
               ),
-            ), // Display spinner with blur effect when loading
+            ),
         ],
       ),
     );

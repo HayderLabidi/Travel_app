@@ -7,7 +7,9 @@ import 'package:travel/Homepage/profile_settings/setting.dart';
 import 'package:travel/login.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+  final String username;
+
+  const ProfileView({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +55,17 @@ class ProfileView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Text(
-                        'Username',
-                        style: TextStyle(
+                      Text(
+                        username,
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(179, 0, 0, 0),
                         ),
                         textAlign: TextAlign.center,
                       ),
+                      const SizedBox(height: 10.0),
+                      
                     ],
                   ),
                 ),

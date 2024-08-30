@@ -3,25 +3,34 @@ import 'package:travel/Homepage/mainpage.dart';
 import 'package:travel/Homepage/messages.dart';
 import 'package:travel/Homepage/profile.dart';
 
+
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final String username;
+
+  const Home({super.key, required this.username});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  int _selectedindex = 0; // Default index for Mainpage
+  int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    const Mainpage(),
-    const MessengerPage(),
-    const ProfileView(),
-  ];
+  late List<Widget> _screens;
 
-  void _onItemTaped(int index) {
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      const Mainpage(),
+      const MessengerPage(),
+      ProfileView(username: widget.username),
+    ];
+  }
+
+  void _onItemTapped(int index) {
     setState(() {
-      _selectedindex = index;
+      _selectedIndex = index;
     });
   }
 
@@ -47,10 +56,10 @@ class _HomeState extends State<Home> {
               label: "Profile",
             ),
           ],
-          currentIndex: _selectedindex,
-          onTap: _onItemTaped,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
         ),
-        body: _screens[_selectedindex],
+        body: _screens[_selectedIndex],
       ),
     );
   }
