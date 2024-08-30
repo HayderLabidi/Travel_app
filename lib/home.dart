@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedindex = 0; // Default index for Mainpage
 
-  List<Widget> _screens = [
+  final List<Widget> _screens = [
     const Mainpage(),
     const MessengerPage(),
     const ProfileView(),
@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black,
+          backgroundColor: const Color.fromARGB(180, 3, 168, 244),
           unselectedItemColor: Colors.white,
           selectedItemColor: Colors.white,
           items: const [

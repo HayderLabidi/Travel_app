@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel/Homepage/profile_settings/saved.dart';
 import 'package:travel/Homepage/profile_settings/setting.dart';
 import 'package:travel/elementHome/destination_hor.dart';
 import 'package:travel/elementHome/destination_model.dart';
@@ -46,12 +47,11 @@ class _MainpageState extends State<Mainpage> {
         .toList();
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 232, 232, 232),
       appBar: AppBar(
         title: const Text("Home"),
         elevation: 0,
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(173, 4, 99, 108),
+        backgroundColor: Colors.lightBlue,
       ),
       drawer: Drawer(
         width: MediaQuery.of(context).size.width * 0.6,
@@ -63,10 +63,10 @@ class _MainpageState extends State<Mainpage> {
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child:
-                    Icon(Icons.person, color: Color.fromARGB(173, 4, 99, 108)),
+                    Icon(Icons.person, color: Colors.lightBlue,),
               ),
               decoration: BoxDecoration(
-                color: Color.fromARGB(173, 4, 99, 108),
+                color: Colors.lightBlue,
               ),
             ),
             ListTile(
@@ -77,6 +77,16 @@ class _MainpageState extends State<Mainpage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SettingsPage()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.bookmark_outline),
+              title: const Text('Saved'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Saved()));
               },
             ),
             ListTile(
@@ -108,7 +118,7 @@ class _MainpageState extends State<Mainpage> {
                 onChanged: (query) {
                   setState(() {
                     searchQuery = query;
-                    print('Search Query: $searchQuery'); // Debugging
+
                   });
                 },
                 decoration: InputDecoration(

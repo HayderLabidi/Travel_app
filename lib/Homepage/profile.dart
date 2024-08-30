@@ -12,10 +12,9 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 232, 232, 232),
       appBar: AppBar(
         title: const Text('Profile'),
-        backgroundColor: const Color.fromARGB(173, 4, 99, 108),
+        backgroundColor: Colors.lightBlue,
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -29,7 +28,7 @@ class ProfileView extends StatelessWidget {
               children: [
                 Container(
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(173, 4, 99, 108),
+                    color: Color.fromARGB(172, 201, 201, 201),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
@@ -68,9 +67,9 @@ class ProfileView extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 110),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(6.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -129,7 +128,7 @@ class ProfileView extends StatelessWidget {
                       child: const Text(
                         'Log Out',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255)),
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -154,11 +153,11 @@ class ProfileView extends StatelessWidget {
       },
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
         ),
         side: const BorderSide(
-          color: Color.fromARGB(255, 232, 232, 232),
+          color: Colors.white,
         ),
       ),
       child: Row(
@@ -171,7 +170,7 @@ class ProfileView extends StatelessWidget {
               style: const TextStyle(color: Colors.black),
             ),
           ),
-          const Text('>', style: TextStyle(color: Colors.black)),
+          const Text('>', style: TextStyle(color: Colors.black , fontSize: 20,)),
         ],
       ),
     );

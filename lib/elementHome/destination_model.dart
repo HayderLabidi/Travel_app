@@ -36,8 +36,25 @@ List<Destination> destinations = [
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.4),
-  Destination(
+      Destination(
       id: 15,
+      name: "Sidi Bousaid",
+      review: random.nextInt(300) + 25,
+      category: "popular",
+      price: random.nextInt(95) + 23,
+      image: [
+        "beach/Sidi-Bou-Said.jpg",
+        "beach/sidi_bous_said_tunisia.jpg",
+        "beach/sidi-bou-said-902754.jpg",
+        "beach/Sidi-Bou-Said-Guide.jpg",
+        
+      ],
+      location: "Tunis, Tunisia",
+      description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
+      rate: 4),
+  Destination(
+      id: 9,
       name: "Nusa Penida",
       category: 'popular',
       image: [
@@ -56,14 +73,14 @@ List<Destination> destinations = [
       price: random.nextInt(95) + 23,
       name: "Gunung Kerinci",
       image: [
-        "mountain/kerinci.jpeg",
-        "mountain/kerinci2.jpg",
-        "mountain/kerinci3.jpg",
-        "mountain/kerinci4.jpg",
+        "mountain/Rome-back-small.jpeg",
+        "mountain/Rome-Italy_image.jpg",
+        "mountain/Rome.jpg",
+
       ],
       review: random.nextInt(300) + 25,
       category: "popular",
-      location: "Jambi, Indonesia",
+      location: "Roma , Italy",
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4),
@@ -112,22 +129,6 @@ List<Destination> destinations = [
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
       rate: 4.4),
-  Destination(
-      id: 9,
-      name: "Gunung Semeru",
-      review: random.nextInt(300) + 25,
-      category: "popular",
-      price: random.nextInt(95) + 23,
-      image: [
-        "mountain/semeru.jpg",
-        "mountain/semeru2.jpg",
-        "mountain/semeru3.jpg",
-        "mountain/semeru4.jpg",
-      ],
-      location: "Jawa Timur, Indonesia",
-      description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
-      rate: 4),
   Destination(
       id: 12,
       name: "Gunung Lawu",

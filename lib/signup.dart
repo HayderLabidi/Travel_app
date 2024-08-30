@@ -1,3 +1,5 @@
+ // ignore_for_file: library_private_types_in_public_api
+
  import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -64,6 +66,7 @@ class _SignUpState extends State<SignUp> {
       try {
         final userExists = await checkUserExists();
         if (userExists) {
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Username or email already exists', style: TextStyle(color: Colors.red))),
           );
@@ -86,23 +89,28 @@ class _SignUpState extends State<SignUp> {
         );
 
         if (response.statusCode == 201) {
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Sign up successful!', style: TextStyle(color: Color.fromARGB(255, 0, 255, 26)))),
           );
           Navigator.pushReplacement(
+            // ignore: use_build_context_synchronously
             context,
             MaterialPageRoute(builder: (context) => const Login()),
           );
         } else if (response.statusCode == 409) {
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Username or email already exists', style: TextStyle(color: Colors.red))),
           );
         } else {
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Failed to register user: ${response.reasonPhrase}', style: const TextStyle(color: Colors.red))),
           );
         }
       } catch (e) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error occurred: $e', style: const TextStyle(color: Colors.red))),
         );
@@ -126,9 +134,14 @@ class _SignUpState extends State<SignUp> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.network(
-              "https://i.pinimg.com/474x/86/c3/10/86c31067545cee8ea9dfe43ea5f8919d.jpg",
-              fit: BoxFit.cover,
+            child: Container(
+              constraints: const BoxConstraints.expand(),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/welcom_login/login.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
           Center(

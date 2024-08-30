@@ -9,6 +9,7 @@ class Login extends StatefulWidget {
   const Login({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginState createState() => _LoginState();
 }
 
@@ -52,6 +53,7 @@ class _LoginState extends State<Login> {
             isLoading = false; 
           });
           Navigator.pushAndRemoveUntil(
+            // ignore: use_build_context_synchronously
             context,
             MaterialPageRoute(builder: (context) => const Home()),
             (Route<dynamic> route) => false,
@@ -61,6 +63,7 @@ class _LoginState extends State<Login> {
         setState(() {
           isLoading = false; 
         });
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Invalid username/email or password', style: TextStyle(color: Colors.red))),
         );
@@ -69,6 +72,7 @@ class _LoginState extends State<Login> {
       setState(() {
         isLoading = false; 
       });
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Failed to login', style: TextStyle(color: Colors.red))),
       );

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:travel/elementHome/chat.dart';
 
@@ -11,6 +13,7 @@ class MessengerPage extends StatefulWidget {
   const MessengerPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MessengerPageState createState() => _MessengerPageState();
 }
 
@@ -18,9 +21,9 @@ class _MessengerPageState extends State<MessengerPage> {
   final List<Map<String, String>> Countries = [
     {'name': 'Pelastine', 'flag': 'assets/Countries/ps.png'},
     {'name': 'Canada', 'flag': 'assets/Countries/ca.png'},
+    {'name': 'Tunisia', 'flag': 'assets/Countries/tn.png'},
     {'name': 'England', 'flag': 'assets/Countries/ge.png'},
     {'name': 'Italy', 'flag': 'assets/Countries/it.png'},
-    {'name': 'Tunisia', 'flag': 'assets/Countries/tn.png'},
     {'name': 'Japan', 'flag': 'assets/Countries/jp.png'},
     {'name': 'China', 'flag': 'assets/Countries/cn.png'},
     {'name': 'Brazil', 'flag': 'assets/Countries/br.png'},
@@ -59,12 +62,12 @@ class _MessengerPageState extends State<MessengerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 232, 232, 232),
+
       appBar: AppBar(
         title: const Text('Messages'),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(173, 4, 99, 108),
+        backgroundColor: Colors.lightBlue,
         actions: [
           if (!isSelectionMode)
             IconButton(
@@ -161,18 +164,21 @@ class _MessengerPageState extends State<MessengerPage> {
                   },
                   child: Column(
                     children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                           radius: 25,
-                          backgroundImage: AssetImage(country['flag']!),
+                      Padding(
+                        padding: const EdgeInsets.all(20.10),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                             radius: 30,
+                            backgroundImage: AssetImage(country['flag']!),
+                          ),
+                          title: Text(country['name']!),
+                          tileColor: selectedMessageIndex == index
+                              ? const Color.fromARGB(255, 147, 147, 147).withOpacity(0.2)
+                              : null,
                         ),
-                        title: Text(country['name']!),
-                        tileColor: selectedMessageIndex == index
-                            ? Colors.teal.withOpacity(0.2)
-                            : null,
                       ),
                       const Divider(
-                        height: 18,
+                        height: 0,
                         color: Colors.grey,
                       ),
                     ],
