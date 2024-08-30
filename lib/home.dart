@@ -3,7 +3,6 @@ import 'package:travel/Homepage/mainpage.dart';
 import 'package:travel/Homepage/messages.dart';
 import 'package:travel/Homepage/profile.dart';
 
-
 class Home extends StatefulWidget {
   final String username;
 
@@ -39,20 +38,22 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(180, 3, 168, 244),
-          unselectedItemColor: Colors.white,
-          selectedItemColor: Colors.white,
+          backgroundColor: Colors.white70,
+          elevation: 5,
+          unselectedItemColor: Colors.black54,
+          selectedItemColor: Colors.blueAccent,
+          type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home, size: 24),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.mail),
+              icon: Icon(Icons.mail, size: 24),
               label: "Messages",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person, size: 24),
               label: "Profile",
             ),
           ],

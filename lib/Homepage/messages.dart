@@ -13,7 +13,6 @@ class MessengerPage extends StatefulWidget {
   const MessengerPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MessengerPageState createState() => _MessengerPageState();
 }
 
@@ -29,7 +28,7 @@ class _MessengerPageState extends State<MessengerPage> {
     {'name': 'Brazil', 'flag': 'assets/Countries/br.png'},
     {'name': 'Australia', 'flag': 'assets/Countries/au.png'},
   ];
-  
+
   List<Map<String, String>> filteredCountries = [];
   bool isSelectionMode = false;
   int? selectedMessageIndex;
@@ -62,12 +61,12 @@ class _MessengerPageState extends State<MessengerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         title: const Text('Messages'),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.blueAccent,
+        elevation: 0,
         actions: [
           if (!isSelectionMode)
             IconButton(
@@ -93,13 +92,16 @@ class _MessengerPageState extends State<MessengerPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(16.0),
             child: TextField(
               controller: _searchController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 12.0),
                 labelText: 'Search',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                prefixIcon: const Icon(Icons.search, color: Colors.blueAccent),
               ),
             ),
           ),
@@ -125,25 +127,27 @@ class _MessengerPageState extends State<MessengerPage> {
 
                       showModalBottomSheet(
                         context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                        ),
                         builder: (context) {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               ListTile(
-                                leading: const Icon(Icons.edit),
+                                leading: const Icon(Icons.edit, color: Colors.blueAccent),
                                 title: const Text('Modify Message'),
                                 onTap: () {
                                   // Handle message modification
                                 },
                               ),
                               ListTile(
-                                leading: const Icon(Icons.delete),
+                                leading: const Icon(Icons.delete, color: Colors.redAccent),
                                 title: const Text('Delete Message'),
                                 onTap: () {
                                   setState(() {
                                     Countries.removeAt(index);
-                                    filteredCountries.removeAt(
-                                        index); // Also update filtered list
+                                    filteredCountries.removeAt(index);
                                     selectedMessageIndex = null;
                                     isSelectionMode = false;
                                   });
@@ -162,26 +166,29 @@ class _MessengerPageState extends State<MessengerPage> {
                       selectedMessageIndex = index;
                     });
                   },
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.10),
-                        child: ListTile(
-                          leading: CircleAvatar(
-                             radius: 30,
-                            backgroundImage: AssetImage(country['flag']!),
-                          ),
-                          title: Text(country['name']!),
-                          tileColor: selectedMessageIndex == index
-                              ? const Color.fromARGB(255, 147, 147, 147).withOpacity(0.2)
-                              : null,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.grey[300]!, width: 1.0),
+                      ),
+                    ),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: AssetImage(country['flag']!),
+                      ),
+                      title: Text(
+                        country['name']!,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
-                      const Divider(
-                        height: 0,
-                        color: Colors.grey,
-                      ),
-                    ],
+                      tileColor: selectedMessageIndex == index
+                          ? Colors.blue.withOpacity(0.1)
+                          : null,
+                    ),
                   ),
                 );
               },
