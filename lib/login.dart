@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:ui';
 import 'package:travel/home.dart';
 import 'package:travel/signup.dart';
 
@@ -173,7 +172,32 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       const SizedBox(height: 16.0),
-                      const Text('Or login with'),
+                     const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'Or continue with',
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                       const SizedBox(height: 16.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +213,7 @@ class _LoginState extends State<Login> {
                           ),
                           const SizedBox(width: 16.0),
                           IconButton(
-                            icon: const Icon(Icons.phone, color: Colors.green, size: 36.0),
+                            icon: const Icon( Icons.apple , color: Color.fromARGB(255, 0, 0, 0), size: 36.0),
                             onPressed: () {},
                           ),
                         ],

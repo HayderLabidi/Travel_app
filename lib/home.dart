@@ -24,6 +24,7 @@ class _HomeState extends State<Home> {
       const Mainpage(),
       const MessengerPage(),
       ProfileView(username: widget.username),
+  
     ];
   }
 
@@ -56,6 +57,7 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.person, size: 24),
               label: "Profile",
             ),
+            
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
