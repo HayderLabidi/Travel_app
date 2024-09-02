@@ -35,7 +35,7 @@ class Saved extends StatelessWidget {
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: DestinationVer(destination: destination),
                     ),
                   );
