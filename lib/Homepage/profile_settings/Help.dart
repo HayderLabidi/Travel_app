@@ -8,7 +8,7 @@ class Help extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Help & support'),
-        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+        backgroundColor: Colors.white,
       ),
       body: const Center(
         child: Text('Help & support'),

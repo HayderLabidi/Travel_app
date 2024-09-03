@@ -16,7 +16,7 @@ class Saved extends StatelessWidget {
       ),
       body: SavedDestinations.savedList.isEmpty
           ? const Center(
-              child: Text('No saved items'),
+              child: Text('No saved items '),
             )
           : Padding(
             padding: const EdgeInsets.all(5.0),

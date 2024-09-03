@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       ),
       body: const Center(
-        child: Text('Settings Page'),
+        child: Text('Settings Page '),
       ),
     );
   }
