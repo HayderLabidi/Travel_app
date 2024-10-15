@@ -84,8 +84,8 @@ class _HelpState extends State<Help> {
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8.0),
-            const Text('Email: support@example.com'),
-            const Text('Phone: +123 456 7890'),
+            const Text('Email: Hayder@gmail.com'),
+            const Text('Phone: +216 29019040'),
             const SizedBox(height: 32.0),
             const Text(
               'Frequently Asked Questions:',

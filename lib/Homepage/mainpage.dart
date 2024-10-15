@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:travel/Homepage/profile_settings/language.dart';
 import 'package:travel/Homepage/profile_settings/saved.dart';
 import 'package:travel/Homepage/profile_settings/setting.dart';
-import 'package:travel/elementHome/Dashboard.dart';
 import 'package:travel/elementHome/destination_hor.dart';
 import 'package:travel/elementHome/destination_model.dart';
 import 'package:travel/elementHome/destination_ver.dart';
@@ -29,7 +29,7 @@ class _MainpageState extends State<Mainpage> {
   List<Destination> recomend =
       destinations.where((element) => element.category == 'recommend').toList();
 
-  List<Destination> _destinations = []; // Declare the list for added destinations.
+  final List<Destination> _destinations = []; // Declare the list for added destinations.
 
   String searchQuery = '';
 
@@ -63,19 +63,6 @@ class _MainpageState extends State<Mainpage> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.lightBlue,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Dashboard()),
-              ).then((_) {
-                setState(() {});
-              });
-            },
-          ),
-        ],
       ),
       drawer: Drawer(
         width: MediaQuery.of(context).size.width * 0.6,
@@ -123,7 +110,10 @@ class _MainpageState extends State<Mainpage> {
               leading: const Icon(Icons.language),
               title: const Text('Languages'),
               onTap: () {
-                Navigator.pop(context);
+                 Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Language()));
               },
             ),
           ],
