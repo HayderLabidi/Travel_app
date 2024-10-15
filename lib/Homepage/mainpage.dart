@@ -59,7 +59,7 @@ class _MainpageState extends State<Mainpage> {
           children: [
             const UserAccountsDrawerHeader(
               accountName: Text('User Name'),
-              accountEmail: Text('user@example.com'),
+              accountEmail: Text('user@example.com'), 
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child:
