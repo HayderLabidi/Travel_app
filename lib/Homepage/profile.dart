@@ -95,7 +95,7 @@ class ProfileView extends StatelessWidget {
                     context,
                     icon: Icons.language,
                     label: 'Language',
-                    page: const Language(),
+                    page: Language(),
                   ),
                   const SizedBox(height: 15),
                   _buildOutlinedButton(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:travel/elementHome/Dashboard.dart';
 import 'dart:convert';
 import 'package:travel/home.dart';
 import 'package:travel/signup.dart';
@@ -50,15 +51,27 @@ class _LoginState extends State<Login> {
           setState(() {
             isLoading = false;
           });
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Home(
-                username: data['username'],
+
+          // Check if the logged-in user is the admin
+          if (emailOrUsername == 'admin@gmail.com' && password == 'ADmin0000') {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Dashboard(), // Navigate to DashboardForm
               ),
-            ),
-            (Route<dynamic> route) => false,
-          );
+              (Route<dynamic> route) => false,
+            );
+          } else {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Home(
+                  username: data['username'],
+                ),
+              ),
+              (Route<dynamic> route) => false,
+            );
+          }
         });
       } else {
         setState(() {
@@ -172,32 +185,32 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       const SizedBox(height: 16.0),
-                     const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.5,
+                                color: Color.fromARGB(255, 0, 0, 0),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Text(
+                                'Or continue with',
+                                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.5,
+                                color: Color.fromARGB(255, 0, 0, 0),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          'Or continue with',
-                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                       const SizedBox(height: 16.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -213,7 +226,7 @@ class _LoginState extends State<Login> {
                           ),
                           const SizedBox(width: 16.0),
                           IconButton(
-                            icon: const Icon( Icons.apple , color: Color.fromARGB(255, 0, 0, 0), size: 36.0),
+                            icon: const Icon(Icons.apple, color: Color.fromARGB(255, 0, 0, 0), size: 36.0),
                             onPressed: () {},
                           ),
                         ],
