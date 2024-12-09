@@ -1,16 +1,31 @@
-# travel
+<p align="center"><a href="https://androidstudio.com" target="_blank"><img src="https://www.svgrepo.com/show/353751/flutter.svg" width="400"></a></p>
 
-A new Flutter project.
+# Travel App
 
-## Getting Started
+## Quick Start 
+clone the repo
+```
+    git clone https://github.com/HayderLabidi/Travel_app.git
+```
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+# That's all 🎊🎉 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ScreenShots
+<img src="flutter_photos/Picture1.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture2.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture3.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture4.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture5.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture6.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture7.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture8.png" width="50%" /><br /> <br />
+<img src="flutter_photos/Picture9.png" width="50%" /><br /> <br />
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
+```
+Make sure to leave a start ✨✨
+```
+
