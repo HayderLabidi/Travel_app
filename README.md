@@ -1,6 +1,6 @@
 <p align="center"><a href="https://androidstudio.com" target="_blank"><img src="https://www.svgrepo.com/show/353751/flutter.svg" width="400"></a></p>
 
-# Travel App
+# Travel App-web
 
 ## Quick Start 
 clone the repo
