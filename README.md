@@ -2,7 +2,7 @@
 
 # Travel App
 
-## Quick Start 
+## Quick Start !
 clone the repo
 ```
     git clone https://github.com/HayderLabidi/Travel_app.git
